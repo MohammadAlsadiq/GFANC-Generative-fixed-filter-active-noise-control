@@ -119,7 +119,7 @@ class Control_filter_Index_predictor():
 
 
 def Control_filter_selection(fs, MODEL_PTH, path_mat, Primary_noise, threshold):
-    device = torch.device('cuda')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     Pre_trained_control_filter_ID_pridector = Control_filter_Index_predictor(MODEL_PATH=MODEL_PTH, path_mat=path_mat, device=device, fs=fs, threshold=threshold)
     

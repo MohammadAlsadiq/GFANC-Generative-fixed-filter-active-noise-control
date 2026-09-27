@@ -6,6 +6,13 @@ import matplotlib.pyplot as plt
 import scipy.signal as signal
 import soundfile
 
+import soundfile as sf
+def _soundfile_load(uri, *args, **kwargs):
+    data, sr = sf.read(uri, dtype="float32", always_2d=True)
+    return torch.from_numpy(data.T), sr
+
+torchaudio.load = _soundfile_load
+
 #--------------------------------------------------------------
 # untion: print_stats()
 # Description : print the information of wave file.
